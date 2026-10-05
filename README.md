@@ -1,5 +1,3 @@
-# resume-analyzer-job-recommendation
-AI-based resume analyzer that extracts skills, calculates job match scores, identifies skill gaps, and recommends suitable jobs.
 # AI-Based Resume Analyzer & Job Recommendation System
 
 An AI-based resume analysis and job recommendation system developed using Java, Spring Boot, MySQL, HTML, CSS, and JavaScript.
