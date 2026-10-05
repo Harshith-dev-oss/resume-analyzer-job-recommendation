@@ -45,14 +45,14 @@
                     >
                 </div>
 
-                <button onclick="analyzeResume()">
+                <button id="analyzeButton" type="button" onclick="analyzeResume()">
                     Analyze Resume
                 </button>
             </section>
 
             <section class="card" id="result">
                 <h2>Analysis Result</h2>
-                <div id="output">
+                <div id="output" role="status" aria-live="polite">
                     Upload your resume details and click Analyze Resume.
                 </div>
             </section>
