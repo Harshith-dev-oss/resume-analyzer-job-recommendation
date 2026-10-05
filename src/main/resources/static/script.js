@@ -1,3 +1,11 @@
+const loadingScreen = document.getElementById("loadingScreen");
+const appContent = document.getElementById("appContent");
+
+window.setTimeout(() => {
+    loadingScreen.hidden = true;
+    appContent.hidden = false;
+}, 5000);
+
 async function analyzeResume() {
     const name = document.getElementById("name").value;
     const fileInput = document.getElementById("resumePdf");

@@ -10,47 +10,55 @@
 
 <body>
 
-    <header>
+    <section class="loading-screen" id="loadingScreen" aria-live="polite">
+        <div class="loading-spinner" aria-hidden="true"></div>
         <h1>AI Resume Analyzer</h1>
-        <p>Resume Analysis & Job Recommendation System</p>
-    </header>
+        <p>Resume Analysis &amp; Job Recommendation System</p>
+        <p class="loading-message">Preparing your analyzer...</p>
+    </section>
 
-    <main>
+    <div id="appContent" hidden>
+        <header>
+            <h1>AI Resume Analyzer</h1>
+            <p>Resume Analysis &amp; Job Recommendation System</p>
+        </header>
 
-        <section class="card">
-            <h2>Upload Resume</h2>
+        <main>
 
-            <input
-                type="text"
-                id="name"
-                placeholder="Full Name"
-                style="margin-bottom: 20px;"
-            >
+            <section class="card">
+                <h2>Upload Resume</h2>
 
-            <div style="margin-bottom: 20px; padding: 20px; border: 2px dashed #ccc; border-radius: 6px; text-align: center; background: #fafafa;">
-                <label for="resumePdf" style="font-weight: bold; display: block; margin-bottom: 10px;">Select PDF Resume</label>
                 <input
-                    type="file"
-                    id="resumePdf"
-                    accept="application/pdf"
-                    style="margin: 0 auto; display: block; padding: 0; border: none; width: auto;"
+                    type="text"
+                    id="name"
+                    placeholder="Full Name"
+                    style="margin-bottom: 20px;"
                 >
-            </div>
 
-            <button onclick="analyzeResume()">
-                Analyze Resume
-            </button>
-        </section>
+                <div style="margin-bottom: 20px; padding: 20px; border: 2px dashed #ccc; border-radius: 6px; text-align: center; background: #fafafa;">
+                    <label for="resumePdf" style="font-weight: bold; display: block; margin-bottom: 10px;">Select PDF Resume</label>
+                    <input
+                        type="file"
+                        id="resumePdf"
+                        accept="application/pdf"
+                        style="margin: 0 auto; display: block; padding: 0; border: none; width: auto;"
+                    >
+                </div>
 
-        <section class="card" id="result">
-            <h2>Analysis Result</h2>
-            <div id="output">
-                Upload your resume details and click Analyze Resume.
-            </div>
-        </section>
+                <button onclick="analyzeResume()">
+                    Analyze Resume
+                </button>
+            </section>
 
-    </main>
+            <section class="card" id="result">
+                <h2>Analysis Result</h2>
+                <div id="output">
+                    Upload your resume details and click Analyze Resume.
+                </div>
+            </section>
 
+        </main>
+    </div>
     <script src="script.js"></script>
 
 </body>
