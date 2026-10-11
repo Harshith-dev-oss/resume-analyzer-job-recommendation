@@ -57,6 +57,18 @@
                 </div>
             </section>
 
+            <section class="card" id="historySection">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
+                    <h2>Saved Analyses (MySQL Database)</h2>
+                    <button type="button" id="refreshHistoryBtn" onclick="loadHistory()" style="width: auto; padding: 8px 16px; font-size: 14px; margin: 0;">
+                        Refresh History
+                    </button>
+                </div>
+                <div id="historyOutput" role="region" aria-live="polite">
+                    <p style="color: #64748b;">Loading saved records...</p>
+                </div>
+            </section>
+
         </main>
     </div>
     <script src="script.js"></script>

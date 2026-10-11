@@ -12,19 +12,19 @@ public class Resume {
 
     private String name;
 
-    @Column(length = 5000)
+    @Column(columnDefinition = "TEXT")
     private String education;
 
-    @Column(length = 5000)
+    @Column(columnDefinition = "TEXT")
     private String skills;
 
-    @Column(length = 5000)
+    @Column(columnDefinition = "TEXT")
     private String projects;
 
-    @Column(length = 5000)
+    @Column(columnDefinition = "TEXT")
     private String certifications;
 
-    @Column(length = 5000)
+    @Column(columnDefinition = "TEXT")
     private String experience;
 
     public Resume() {
