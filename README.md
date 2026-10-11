@@ -22,7 +22,7 @@ An AI-powered full-stack web application that parses resumes in PDF format, anal
 - **ORM & Data Access**: Spring Data JPA, Hibernate ORM
 - **Database**: MySQL 8.x
 - **PDF Extraction**: Apache PDFBox 2.0.30
-- **Build Tool**: Apache Maven (Wrapper included: `./mvnw`)
+- **Build Tool**: Apache Maven (Wrapper included in `backend/`)
 - **Version Control**: Git & GitHub
 - **Containerization & Deployment**: Docker, Railway / Render
 
@@ -32,38 +32,29 @@ An AI-powered full-stack web application that parses resumes in PDF format, anal
 
 ```text
 resume-analyzer/
-├── .mvn/wrapper/                  # Maven wrapper binaries
-├── src/
-│   ├── main/
-│   │   ├── java/com/resume/analyzer/
-│   │   │   ├── ResumeAnalyzerApplication.java   # Main entry point & DB seeder
+├── frontend/                      # HTML, CSS, and JavaScript user interface
+│   ├── index.html
+│   ├── script.js
+│   └── style.css
+├── backend/                       # Spring Boot API, database, and build files
+│   ├── .mvn/wrapper/
+│   ├── src/
+│   │   ├── main/java/com/resume/analyzer/
+│   │   │   ├── ResumeAnalyzerApplication.java
 │   │   │   ├── controller/
-│   │   │   │   ├── JobController.java           # Job endpoints (/api/jobs)
-│   │   │   │   └── ResumeController.java        # Resume & Analysis endpoints (/api/resumes)
 │   │   │   ├── model/
-│   │   │   │   ├── Job.java                     # JPA entity for Job profiles
-│   │   │   │   ├── Resume.java                  # JPA entity for Candidate Resume
-│   │   │   │   └── ResumeAnalysis.java          # JPA entity for Persisted Analysis Results
 │   │   │   ├── repository/
-│   │   │   │   ├── JobRepository.java           # Spring Data JPA repository for Jobs
-│   │   │   │   ├── ResumeRepository.java        # Spring Data JPA repository for Resumes
-│   │   │   │   └── ResumeAnalysisRepository.java# Repository for Analysis Results
 │   │   │   └── service/
-│   │   │       ├── RecommendationService.java   # PDF parsing & skill scoring logic
-│   │   │       └── ResumeService.java           # Business logic & CRUD operations
-│   │   └── resources/
-│   │       ├── application.properties           # Spring Boot & Database configuration
-│   │       ├── data.sql                         # Initial job role seeds
-│   │       └── static/                          # Integrated Single-Page Frontend
-│   │           ├── index.html                   # User interface
-│   │           ├── style.css                    # Responsive styling
-│   │           └── script.js                    # Dynamic frontend logic & API calls
+│   │   ├── main/resources/         # Application configuration and job seeds
+│   │   └── test/
+│   ├── insert_jobs.sql
+│   └── pom.xml
 ├── Dockerfile                     # Multi-stage Docker production build
 ├── Procfile                       # Cloud platform runner command
-├── system.properties              # Java runtime specification (Java 17)
-├── pom.xml                        # Maven dependencies & build configurations
 └── README.md                      # Complete project documentation
 ```
+
+The Maven build copies the files from `frontend/` into the backend's packaged static resources, so the backend continues to serve the UI at `http://localhost:8080`.
 
 ---
 
@@ -107,7 +98,7 @@ SELECT * FROM resume_analyses;
 
 ## 🔐 Environment Variables
 
-The application is securely configured in `src/main/resources/application.properties` to support both local defaults and cloud production variables:
+The application is configured in `backend/src/main/resources/application.properties` to support local defaults and cloud production variables:
 
 | Variable Name | Description | Local Default | Production Example |
 | :--- | :--- | :--- | :--- |
@@ -121,19 +112,14 @@ The application is securely configured in `src/main/resources/application.proper
 
 ## 🚀 How to Run Locally
 
-### Step 1: Open Terminal in Project Folder
-Navigate to the directory containing `pom.xml`:
+### Step 1: Run the Maven Wrapper from the Project Folder
 ```powershell
-cd C:\Users\harsh\OneDrive\Desktop\AI-RESUME-ANALYZER\resume-analyzer
+.\backend\mvnw.cmd -f .\backend\pom.xml spring-boot:run
 ```
 
-### Step 2: Build and Run with Maven Wrapper
-```powershell
-.\mvnw.cmd spring-boot:run
-```
-*(On Linux/macOS: `./mvnw spring-boot:run`)*
+On Linux/macOS, use `./backend/mvnw -f backend/pom.xml spring-boot:run`.
 
-### Step 3: Access the Application
+### Step 2: Access the Application
 Open your web browser and visit:
 👉 **`http://localhost:8080`**
 
