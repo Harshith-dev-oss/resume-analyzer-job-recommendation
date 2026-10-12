@@ -217,3 +217,5 @@ git push origin main
 1. **OCR Support**: Currently processes standard digital PDF text. Future updates can integrate Tesseract OCR for scanned PDF images.
 2. **AI Semantic Matching**: Future enhancements can integrate LLM embeddings (e.g. Gemini API / LangChain4j) for deep semantic comprehension beyond keyword matching.
 3. **Role-Based Authentication**: Adding Spring Security with JWT tokens for multi-tenant recruiter portals.
+
+  ## final link of my project:https://resume-analyzer-app-production-3ef4.up.railway.app
