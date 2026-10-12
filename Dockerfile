@@ -1,16 +1,24 @@
-# Stage 1: Build the Spring Boot application using Maven
+# Stage 1: Build the React frontend
+FROM node:22-alpine AS frontend-build
+WORKDIR /app/frontend
+COPY frontend/package*.json ./
+RUN npm ci
+COPY frontend/ ./
+RUN npm run build
+
+# Stage 2: Build the Spring Boot application using Maven
 FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /app
 
-# Copy backend and frontend sources
+# Copy backend sources and the compiled React frontend
 COPY backend/pom.xml backend/pom.xml
 COPY backend/src backend/src
-COPY frontend frontend
+COPY --from=frontend-build /app/frontend/dist frontend/dist
 
 # Package the application JAR (skipping unit tests for fast cloud build)
 RUN mvn -f backend/pom.xml clean package -DskipTests
 
-# Stage 2: Minimal runtime image
+# Stage 3: Minimal runtime image
 FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 

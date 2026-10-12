@@ -78,7 +78,7 @@
 	<build>
 		<resources>
 			<resource>
-				<directory>${project.basedir}/../frontend</directory>
+				<directory>${project.basedir}/../frontend/dist</directory>
 				<targetPath>static</targetPath>
 			</resource>
 			<resource>

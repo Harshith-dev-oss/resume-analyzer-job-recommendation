@@ -1,77 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Analyze your resume and discover job recommendations matched to your skills."
+    />
     <title>AI Resume Analyzer</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-    <section class="loading-screen" id="loadingScreen" aria-live="polite">
-        <div class="loading-spinner" aria-hidden="true"></div>
-        <h1>AI Resume Analyzer</h1>
-        <p>Resume Analysis &amp; Job Recommendation System</p>
-        <p class="loading-message">Preparing your analyzer...</p>
-    </section>
-
-    <div id="appContent" hidden>
-        <header>
-            <h1>AI Resume Analyzer</h1>
-            <p>Resume Analysis &amp; Job Recommendation System</p>
-        </header>
-
-        <main>
-
-            <section class="card">
-                <h2>Upload Resume</h2>
-
-                <input
-                    type="text"
-                    id="name"
-                    placeholder="Full Name"
-                    style="margin-bottom: 20px;"
-                >
-
-                <div style="margin-bottom: 20px; padding: 20px; border: 2px dashed #ccc; border-radius: 6px; text-align: center; background: #fafafa;">
-                    <label for="resumePdf" style="font-weight: bold; display: block; margin-bottom: 10px;">Select PDF Resume</label>
-                    <input
-                        type="file"
-                        id="resumePdf"
-                        accept="application/pdf"
-                        style="margin: 0 auto; display: block; padding: 0; border: none; width: auto;"
-                    >
-                </div>
-
-                <button id="analyzeButton" type="button" onclick="analyzeResume()">
-                    Analyze Resume
-                </button>
-            </section>
-
-            <section class="card" id="result">
-                <h2>Analysis Result</h2>
-                <div id="output" role="status" aria-live="polite">
-                    Upload your resume details and click Analyze Resume.
-                </div>
-            </section>
-
-            <section class="card" id="historySection">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
-                    <h2>Saved Analyses (MySQL Database)</h2>
-                    <button type="button" id="refreshHistoryBtn" onclick="loadHistory()" style="width: auto; padding: 8px 16px; font-size: 14px; margin: 0;">
-                        Refresh History
-                    </button>
-                </div>
-                <div id="historyOutput" role="region" aria-live="polite">
-                    <p style="color: #64748b;">Loading saved records...</p>
-                </div>
-            </section>
-
-        </main>
-    </div>
-    <script src="script.js"></script>
-
-</body>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>

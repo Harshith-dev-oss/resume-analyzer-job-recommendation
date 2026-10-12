@@ -17,7 +17,7 @@ An AI-powered full-stack web application that parses resumes in PDF format, anal
 
 ## 🛠️ Technologies Used
 
-- **Frontend**: HTML5, CSS3, JavaScript (Fetch API, responsive UI)
+- **Frontend**: React 18, Vite, CSS, JavaScript
 - **Backend**: Java 17, Spring Boot 4 / Spring Framework
 - **ORM & Data Access**: Spring Data JPA, Hibernate ORM
 - **Database**: MySQL 8.x
@@ -32,10 +32,14 @@ An AI-powered full-stack web application that parses resumes in PDF format, anal
 
 ```text
 resume-analyzer/
-├── frontend/                      # HTML, CSS, and JavaScript user interface
+├── frontend/                      # React application and Vite build configuration
 │   ├── index.html
-│   ├── script.js
-│   └── style.css
+│   ├── package.json
+│   ├── package-lock.json
+│   └── src/
+│       ├── App.jsx
+│       ├── main.jsx
+│       └── styles.css
 ├── backend/                       # Spring Boot API, database, and build files
 │   ├── .mvn/wrapper/
 │   ├── src/
@@ -54,7 +58,9 @@ resume-analyzer/
 └── README.md                      # Complete project documentation
 ```
 
-The Maven build copies the files from `frontend/` into the backend's packaged static resources, so the backend continues to serve the UI at `http://localhost:8080`.
+Vite builds the React app into `frontend/dist/`. Maven packages those built files as Spring Boot static resources, so the backend serves the UI at `http://localhost:8080`. The Docker build runs both the frontend and backend builds.
+
+For frontend-only development, run `npm --prefix frontend run dev`; Vite serves the app and proxies `/api` requests to the backend on port `8080`.
 
 ---
 
@@ -62,9 +68,10 @@ The Maven build copies the files from `frontend/` into the backend's packaged st
 
 Before running the project locally, ensure you have:
 1. **Java JDK 17+** installed (`java -version`)
-2. **MySQL Server 8.x** installed and running on port 3306
-3. **MySQL Workbench** or MySQL CLI
-4. Git installed
+2. **Node.js 22+** and npm installed (`node --version`, `npm --version`)
+3. **MySQL Server 8.x** installed and running on port 3306
+4. **MySQL Workbench** or MySQL CLI
+5. Git installed
 
 ---
 
@@ -112,14 +119,22 @@ The application is configured in `backend/src/main/resources/application.propert
 
 ## 🚀 How to Run Locally
 
-### Step 1: Run the Maven Wrapper from the Project Folder
+### Step 1: Build the React frontend
+```powershell
+cd .\frontend
+npm ci
+npm run build
+cd ..
+```
+
+### Step 2: Run the Maven Wrapper from the Project Folder
 ```powershell
 .\backend\mvnw.cmd -f .\backend\pom.xml spring-boot:run
 ```
 
-On Linux/macOS, use `./backend/mvnw -f backend/pom.xml spring-boot:run`.
+On Linux/macOS, use `npm --prefix frontend ci && npm --prefix frontend run build`, then `./backend/mvnw -f backend/pom.xml spring-boot:run`. On Windows, `start_app.bat` installs frontend dependencies, builds React, and starts Spring Boot.
 
-### Step 2: Access the Application
+### Step 3: Access the Application
 Open your web browser and visit:
 👉 **`http://localhost:8080`**
 
